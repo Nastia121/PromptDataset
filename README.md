@@ -4,7 +4,7 @@ This repository accompanies the bachelor thesis “Aging of Prompt Engineering T
 
 For this thesis, the dataset was cleaned and filtered to 218 function-level tasks, each evaluated under five Prompt Engineering Techniques: Zero-Shot, Few-Shot, Chain-of-Thought (CoT), Contrastive Chain-of-Thought (CCoT), and Program-of-Thought (PoT). With three independent generations per task–technique–model combination, this yields a total of 19,620 LLM runs across six instruction-tuned models: GPT-3.5-Turbo, GPT-4o, Qwen2 7B Instruct, Qwen2.5 7B Instruct, Mistral-7B-Instruct, and Mistral-Large.
 
-The repository provides the modified dataset used in the experiments, the scripts for constructing prompts, running LLM inference, and extracting code, as well as the evaluation pipeline that reuses the original CoderEval Docker environments to compute pass@k metrics. It also includes the aggregated results (pass counts, pass@k, and per-technique deltas) that underpin the empirical analysis in the thesis.
+The repository provides the modified dataset used in the experiments, the scripts for constructing prompts, running LLM inference, and extracting code, as well as the evaluation pipeline that reuses the original CoderEval Docker environments to compute pass@k metrics. It also includes the aggregated results that underpin the empirical analysis in the thesis.
 
 ## Repository structure
 
