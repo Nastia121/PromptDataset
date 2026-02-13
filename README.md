@@ -38,7 +38,7 @@ The main folders are organized as follows:
 
 - `results/`  
   Aggregated evaluation results.
-  - `model_outputs/`: Raw cleaned LLM outputs before evaluation.
+  - `model_outputs/`: Raw cleaned LLM outputs before evaluation in jsonl.-format.
   - `failed_tasks.txt`: List of tasks where code generation failed.
   - `evaluation_results/`: Per-model evaluation outputs in jsonl.-format.
   
