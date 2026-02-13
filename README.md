@@ -41,6 +41,12 @@ The main folders are organized as follows:
   - `model_outputs/`: Raw cleaned LLM outputs before evaluation.
   - `failed_tasks.txt`: List of tasks where code generation failed.
   - `evaluation_results/`: Per-model evaluation outputs in jsonl.-format.
+  
+- `LICENSE`  
+  License for this repository.
 
 - `README.md`  
   Main documentation describing the project, dataset, and the structure of this repository.
+
+- `requirements.txt`  
+  Python package requirements for setting up the environment used in this repository.
