@@ -403,8 +403,6 @@ def evaluate_single_prediction(args):
             print("[Worker] Broken venv for", project_name_flat)
             return None
 
-        # assume dependencies already installed; if needed, you can call:
-        # install_general_dependencies(project_root, pip_path)
 
         generated_code = row["generated_code"]
         if not generated_code or generated_code == "null":
@@ -613,3 +611,4 @@ if __name__ == "__main__":
         evaluation_results_file,
         max_workers=args.workers,
     )
+
