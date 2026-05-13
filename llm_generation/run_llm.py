@@ -22,14 +22,42 @@ def write_csv(df, file_path):
 
 
 def extract_code_from_response(response, task_id):
-    try:
-        return re.search(r'```python(.*?)```', response, re.DOTALL).group(1).strip()
-    except:
-        try:
-            return re.search(r'```(.*?)```', response, re.DOTALL).group(1).strip()
-        except:
-            print(f"Could not extract code for task {task_id}")
-            return ""
+    """
+    Extracts clean code from a model's text response.
+    """
+    if not response or not isinstance(response, str):
+        return ""
+
+    # Try to match markdown-style code fences
+    code_blocks = re.findall(r"```(?:python)?(.*?)```", response, re.DOTALL | re.IGNORECASE)
+    if code_blocks:
+        code = code_blocks[0].strip()
+        return code
+
+    # If no fences, look for code-looking text
+    # Look for lines that start with typical Python syntax or indentation
+    lines = response.splitlines()
+    code_lines = []
+    in_code = False
+
+    for line in lines:
+        # Detect start of code
+        if re.search(r"^\s*(def |class |import |from |print|#|if |for |while |return|try|except|with )", line):
+            in_code = True
+        if in_code:
+            code_lines.append(line)
+
+    code = "\n".join(code_lines).strip()
+
+    # Clean up common model artifacts
+    code = re.sub(r"^Here'?s the code:?[\s\n]*", "", code, flags=re.IGNORECASE)
+    code = re.sub(r"^```+", "", code)
+    code = re.sub(r"```+$", "", code)
+    code = code.strip()
+
+    if not code:
+        print(f"Could not extract clear code for task {task_id}")
+    return code
 
 
 def process_row(myModel, item):
@@ -49,7 +77,7 @@ def process_row(myModel, item):
 
 
 def main(args):
-    dataset_filename = r"" # path to datset
+    dataset_filename = r"" # path to dataset
     output_file = r"" # path to output destination
 
     data = read_csv(dataset_filename, delimiter=';')
